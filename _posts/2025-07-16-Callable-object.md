@@ -26,4 +26,60 @@ int main() {
 ```
 ---
 - when we create an object of triple t, Since it is **Callable Function objects** when use it,  we can simply say t(6).
+---
+## Callable Standard Library Operators
+
+In C++, the STL provides standard function objects (also called functors) for common operations.  
+- **Binary** means the operator takes **two inputs** (e.g., `a + b`).
+- **Unary** means the operator takes **one input** (e.g., `-a`).
+
+### Arithmetic Function Objects
+
+| Type     | Functor Name         | Arity  |
+|----------|----------------------|--------|
+| plus     | `plus<T>`            | Binary |
+| minus    | `minus<T>`           | Binary |
+| multiplies | `multiplies<T>`    | Binary |
+| divides  | `divides<T>`         | Binary |
+| modulus  | `modulus<T>`         | Binary |
+| negate   | `negate<T>`          | Unary  |
+
+### Relational Function Objects
+
+| Functor Name         | Description          |
+|----------------------|---------------------|
+| equal_to<T>          | `==`                |
+| not_equal_to<T>      | `!=`                |
+| greater<T>           | `>`                 |
+| greater_equal<T>     | `>=`                |
+| less<T>              | `<`                 |
+| less_equal<T>        | `<=`                |
+
+### Logical Function Objects
+
+| Functor Name         | Description      | Arity  |
+|----------------------|-----------------|--------|
+| logical_and<T>       | logical AND     | Binary |
+| logical_or<T>        | logical OR      | Binary |
+| logical_not<T>       | logical NOT     | Unary  |
+
+**Note:**  
+- *Binary*: needs two arguments, like `plus<T>()(a, b)`.
+- *Unary*: needs one argument, like `negate<T>()(a)`.
+
+---
+
+**Example:**  
+```cpp
+#include <functional>
+#include <iostream>
+
+int main() {
+    std::plus<int> add;
+    std::negate<int> neg;
+
+    std::cout << add(3, 4) << std::endl;  // Output: 7
+    std::cout << neg(5) << std::endl;     // Output: -5
+}
+
 
