@@ -6,6 +6,7 @@ categories: [Class note review]
 tags: [Class, Review]
 ---
 
+
 # **Callable objects** 
 
 ## Function objects
