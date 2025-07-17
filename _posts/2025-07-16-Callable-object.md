@@ -14,13 +14,14 @@ tags: [Class, Review]
 Understand what means Fucntion Objects
 ---
 **Ex: Standard Function Objects**.
-```C++
-Struct triple{
-    int operator(int x){return 3*x}
-}
-int main(){
-    tripe t
-    cout << t(6)<< endl;
+```cpp
+struct triple {
+    int operator()(int x) { return 3 * x; }
+};
+
+int main() {
+    triple t;
+    std::cout << t(6) << std::endl;
 }
 ```
 ---
