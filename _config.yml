@@ -224,3 +224,8 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+  
+highlighter: rouge
+rouge:
+  theme: monokai
+
