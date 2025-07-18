@@ -79,7 +79,18 @@ int main() {
     std::negate<int> neg;
 
     std::cout << add(3, 4) << std::endl;  // Output: 7
-    std::cout << neg(5) << std::endl;     // Output: -5
+    std::cout << neg(5) << std::endl;     // Output: -5W
 }
+```
+---
+- **Callable object** = an object that u can "**Call**" with parentheses, just like **function:** `obj(args)`.
+- after class has overloaded `operator()`, it is an **callable object**.
+---
+
+**Example 2:**
+```cpp
+
+
+
 
 
