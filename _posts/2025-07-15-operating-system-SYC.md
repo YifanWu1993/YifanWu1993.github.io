@@ -106,7 +106,8 @@ while(true){
 ---
 - This one satisfies the **mutual - exclusion requirement**. but not **bounded - waiting requirement**.
 
-- Understand again of **bounded - waiting requirement**. (say we have pi and pj 2 process. one must enter after another which means neither of them can keep occuping the CS forever.) *in other word*， neither of the process will be starved.
+- Understand again of **bounded - waiting requirement**. (say we have pi and pj 2 process. one must enter after another which means neither of them can keep occuping the CS forever.) in other word， neither of the process will be starved.
+
 ---
 ## Compare and swap fullfill bounded waiting requirement example:
 
