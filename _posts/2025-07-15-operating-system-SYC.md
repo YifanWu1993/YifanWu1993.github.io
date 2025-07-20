@@ -109,10 +109,39 @@ while(true){
 - Understand again of **bounded - waiting requirement**. (say we have pi and pj 2 process. one must enter after another which means neither of them can keep occuping the CS forever.) in other word， neither of the process will be starved.
 
 ---
-## Compare and swap fullfill bounded waiting requirement example:
+## **Compare_and_swap() fullfill bounded waiting requirement example:**
 
 ## **Code**:
+```cpp
+lock = 0; // Lock is free, anyone can go into CS section
+while(true){
+    waiting[i] = true; // set waiting == true means process i is currently waiting to enter the CS.
+    key = 1; 
+    while(waiting[i]==true && key = 1){
+        key = compare_and_set(&lock,0,1)
+    } // Explaination below
+    waiting[i] == false; // gonna go into CS so set the waiting to false;
+    /Critical section/;
 
+    // here is the bounded waiting check
+    j = (i+1)%n; // get next waiting process by use modulo
+    while((i != j) && !waiting[j]){
+        j = (j+1)%n;
+    } // once waiting[j] = true it means j is ready to the CS, means we found someone ready, so it will jump out loop
+    if(i=j){
+        lock = 0;
+    }//if iterate all over means everyone might use the CS already, lock can set free again
+    else{
+        waiting[j] = false; // set the j we found equal to false means the j we found will go into the CS section, it doesnt wait anymore.
+    }
+    /remainder/
+}
+```
+---
+- **Important:** ```while(waiting[i]==true && key = 1){key = compare_and_set(&lock,0,1)}```. this is essentially making sure the **mutal exclusion,** like mutex lock.
+- **For instance, saying we have p0,p1,p2 three process, lock = 0 right now, so it's free to enter, then went into while loop, key will return 0 but will set the lock = 1, then we will jump out of the loop going into the CS**
+---
+- **For Bounder waiting requirement, we set j and find if j is waiting or not, if j is waiting then we will let j into the CS AND set `waiting[j] = false`, to tell OS j is CS section right now.**
 
 
 
