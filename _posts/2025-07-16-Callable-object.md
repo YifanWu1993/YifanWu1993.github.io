@@ -88,8 +88,78 @@ int main() {
 ---
 
 **Example 2:**
+- An ex Class with normal member function and overload Functors()
+---
 ```cpp
+class foo{
+    private:
+     int x;
+    public:
+    int &square(int &y){
+        y = y*y
+        return y;
+    } // member function
+    int operator()+{
+        return x+x+x;
+    }
+}
 
+int main(){
+    foo f;
+    f.square(5); // use function member
+    cout << f(5)>> endl;
+}
+```
+
+
+---
+## **Lambda Expressions**
+
+- **Syntax:** [Capture] (parameters) -> return_type {body}
+---
+### Usage (Callable object consider as first class citizen)
+#### **Assigning lambda to variable**
+- **Ex:**
+```cpp
+auto square = [](int n){return n*n};
+square(6);
+ ```
+ - so here we assign lambda to "square".
+
+ ---
+ #### **Return a lambda from a function**
+- **Ex:**(bascially a function return lambda)
+```cpp
+auto make_multiplier(int factor){
+    return [factor](int x){return x*factor;};
+}
+
+int main(){
+    auto times10 = make_multiplier(10);
+}
+```
+---
+#### **Pass lambda as a parameter to a function**
+- **Ex:**
+```cpp
+// we have our Lambda
+auto add = [](int a, int b){return a+b;};
+// use lambda as parameter in our function
+void addmore(int x, int y, auto func){
+    cout << func(x,y) << endl;
+}
+// main
+int main(){
+    // our lambda
+    auto add =[](int a, int b){return a+b;};
+    // call addmore by pass in parameter.
+    addmore(3,7,add);
+    // pass lambda directly
+    addmore(5,2,[](int a, int b){return a*b;}); // print 10
+
+    return 0;
+}
+```
 
 
 
