@@ -160,7 +160,91 @@ int main(){
     return 0;
 }
 ```
-- here we had a function 
+- here we had a function "*addmore(auto func)*", one parameter is "auto func", which **auto** let u to pass lambda as a parameter
+
+---
+
+#### Mutable in Lambda
+- **EX:**
+```cpp
+int main(){
+    int count = 0;
+    auto lambda =[=](){ return count ++}; // this will give u error since in lambda, it was consider const under the hood
+    // The way u can modify
+    auto lambda =[=]() mutable{
+        count ++;
+        cout << count << endl;
+    }// this will return count = 1
+
+    // NOTICE: the count is modiy inside scope of the lambda the actual "Count" in the memory will still return 0
+    cout << count << endl; // this will still return 0.
+}
+```
+---
+- **Another Ex of modify the value in lambda with reference**
+---
+```cpp
+int main(
+    int b = 11;
+    int a = 5;
+    auto ss = [a,&b](){
+        b += a;
+        a += b;
+    }
+    ss; 
+    // even out of the scope b will be modify because b was passed by reference
+    cout << b << endl;
+    // but a will never changed since its pass by value
+    cout << a << endl;
+)
+```
+---
+- **Ex of explicity define the return type**
+---
+```cpp
+int main{
+    auto lambda = [](int a, int b) -> double{
+        return static_cast<double>(a)/b;
+    }
+    // static_cast<double> transfer the parameter int a and b to double
+    lambda(5,2);
+}
+```
+---
+## **Function Pointers:**
+- **synatx:** `Returntype (*FunctionPtrName)(parameterTypes)`, `FunctionPtrName = FunctionName`, `FunctionPtrName(arguments)`.
+---
+- **Ex of assign function to function pointer.**
+---
+```cpp
+double average(int x, int y){return (x+y)/2.0;}
+int quotient(int x, int y){return x/y;}
+int remainder(int x, int y){return x%y;}
+
+int (*foo)(int,int);
+
+int main(){
+    foo = average // error, since the return type of foo is int, average is double so complier will give error.
+    foo = quotient // success
+    foo = remainder // success
+    cout << foo(12,9)<<endl;
+}
+```
+---
+- **Ex of Function taking Function pointer as Parameters.**
+---
+```cpp
+double eval(int(*func)(int,int),int a ,int b){
+    return func(a,b); // you can also use funtion pointer as a return type.
+}
+// So the most important thing is pass a function which has the same return type as a parameter
+int main(){
+    cout << eval(remainder,12,9) << endl; // return 3
+    cout << eval(average,12,9)<< endl // error since the return type one is double and one is int.
+}
+```
+---
+
 
 
 
