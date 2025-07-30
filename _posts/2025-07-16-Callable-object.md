@@ -135,29 +135,27 @@ auto make_multiplier(int factor){
 }
 
 int main(){
-    auto times10 = make_multiplier(10);
+    auto t = make_multiplier(10); // pass the factor as 10 here.
+    t(5);// 5*10 = 50
+    t(10)//10*10 = 100
 }
 ```
 ---
 #### **Pass lambda as a parameter to a function**
 - **Ex:**
 ```cpp
-// we have our Lambda
-auto add = [](int a, int b){return a+b;};
 // use lambda as parameter in our function
 void addmore(int x, int y, auto func){
     cout << func(x,y) << endl;
-}
+}//the parameter "auto func" means u can pass any type of parameter even the lambda.
 // main
 int main(){
     // our lambda
     auto add =[](int a, int b){return a+b;};
     // call addmore by pass in parameter.
-    addmore(3,7,add);
+    addmore(3,7,add); // this will return 10
     // pass lambda directly
-    addmore(5,2,[](int a, int b){return a*b;}); // print 10
-
-    return 0;
+    addmore(5,3,[](int a, int b){return a*b;}); // print 15
 }
 ```
 - here we had a function "*addmore(auto func)*", one parameter is "auto func", which **auto** let u to pass lambda as a parameter
@@ -176,7 +174,7 @@ int main(){
         cout << count << endl;
     }// this will return count = 1
 
-    // NOTICE: the count is modiy inside scope of the lambda the actual "Count" in the memory will still return 0
+    // NOTICE: the count is modiy inside scope of the lambda the actual "Count" in the memory will still be 0
     cout << count << endl; // this will still return 0.
 }
 ```
@@ -193,9 +191,9 @@ int main(
     }
     ss; 
     // even out of the scope b will be modify because b was passed by reference
-    cout << b << endl;
+    cout << b << endl; // b = 16.
     // but a will never changed since its pass by value
-    cout << a << endl;
+    cout << a << endl; // a = 5.
 )
 ```
 ---
@@ -243,7 +241,39 @@ int main(){
     cout << eval(average,12,9)<< endl // error since the return type one is double and one is int.
 }
 ```
+- **If u use function pointer as a parameter to a Function like the Ex above, u can pass an exist function as parameter and also you can return that function pointer also**
 ---
+
+## **Function type**
+
+- **Snytax:** `function<int(int,int)> func;`. **It means wrap functions taking two ints and return int**.
+- `func` **can hold free functions, lambdas or fucntors that match** `int(int,int)`.
+---
+- **Ex**:
+```cpp
+// Free Function
+int multiplity(int a, int b){return a*b};
+
+// Functor
+struct adder{
+    int operator(int a, int b){return a+b;}
+}
+
+// Define Function type.
+function<int(int,int)> func;
+
+// Assign function "mulitplity" to func.
+func = multiplity;
+cout << func(2,3) << endl; // print 6
+
+// Functor ->  Callable Object
+func = adder();
+cout << adder(1,2) << endl; // print 3
+
+// Lambda sign to a Function type
+func = [=](int a,int b){return a+b};
+func(3,4);
+```
 
 
 
