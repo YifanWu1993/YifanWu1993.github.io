@@ -6,7 +6,6 @@ categories: [Class note review]
 tags: [Class, Review]
 ---
 
-
 # **Callable objects** 
 
 ## Function objects
@@ -79,7 +78,7 @@ int main() {
     std::negate<int> neg;
 
     std::cout << add(3, 4) << std::endl;  // Output: 7
-    std::cout << neg(5) << std::endl;     // Output: -5W
+    std::cout << neg(5) << std::endl;     // Output: -5
 }
 ```
 ---
@@ -96,21 +95,20 @@ class foo{
      int x;
     public:
     int &square(int &y){
-        y = y*y
+        y = y*y;
         return y;
     } // member function
-    int operator()+{
+    int operator()(){
         return x+x+x;
     }
-}
+};
 
 int main(){
     foo f;
     f.square(5); // use function member
-    cout << f(5)>> endl;
+    cout << f() << endl;
 }
 ```
-
 
 ---
 ## **Lambda Expressions**
@@ -121,7 +119,7 @@ int main(){
 #### **Assigning lambda to variable**
 - **Ex:**
 ```cpp
-auto square = [](int n){return n*n};
+auto square = [](int n){return n*n;};
 square(6);
  ```
  - so here we assign lambda to "square".
@@ -137,7 +135,7 @@ auto make_multiplier(int factor){
 int main(){
     auto t = make_multiplier(10); // pass the factor as 10 here.
     t(5);// 5*10 = 50
-    t(10)//10*10 = 100
+    t(10);//10*10 = 100
 }
 ```
 ---
@@ -167,7 +165,7 @@ int main(){
 ```cpp
 int main(){
     int count = 0;
-    auto lambda =[=](){ return count ++}; // this will give u error since in lambda, it was consider const under the hood
+    auto lambda =[=](){ return count ++;}; // this will give u error since in lambda, it was consider const under the hood
     // The way u can modify
     auto lambda =[=]() mutable{
         count ++;
@@ -182,28 +180,28 @@ int main(){
 - **Another Ex of modify the value in lambda with reference**
 ---
 ```cpp
-int main(
+int main(){
     int b = 11;
     int a = 5;
     auto ss = [a,&b](){
         b += a;
         a += b;
-    }
-    ss; 
+    };
+    ss(); 
     // even out of the scope b will be modify because b was passed by reference
     cout << b << endl; // b = 16.
     // but a will never changed since its pass by value
     cout << a << endl; // a = 5.
-)
+}
 ```
 ---
 - **Ex of explicity define the return type**
 ---
 ```cpp
-int main{
+int main(){
     auto lambda = [](int a, int b) -> double{
         return static_cast<double>(a)/b;
-    }
+    };
     // static_cast<double> transfer the parameter int a and b to double
     lambda(5,2);
 }
@@ -222,9 +220,9 @@ int remainder(int x, int y){return x%y;}
 int (*foo)(int,int);
 
 int main(){
-    foo = average // error, since the return type of foo is int, average is double so complier will give error.
-    foo = quotient // success
-    foo = remainder // success
+    foo = average; // error, since the return type of foo is int, average is double so complier will give error.
+    foo = quotient; // success
+    foo = remainder; // success
     cout << foo(12,9)<<endl;
 }
 ```
@@ -238,7 +236,7 @@ double eval(int(*func)(int,int),int a ,int b){
 // So the most important thing is pass a function which has the same return type as a parameter
 int main(){
     cout << eval(remainder,12,9) << endl; // return 3
-    cout << eval(average,12,9)<< endl // error since the return type one is double and one is int.
+    cout << eval(average,12,9)<< endl; // error since the return type one is double and one is int.
 }
 ```
 - **If u use function pointer as a parameter to a Function like the Ex above, u can pass an exist function as parameter and also you can return that function pointer also**
@@ -252,12 +250,12 @@ int main(){
 - **Ex**:
 ```cpp
 // Free Function
-int multiplity(int a, int b){return a*b};
+int multiplity(int a, int b){return a*b;}
 
 // Functor
 struct adder{
-    int operator(int a, int b){return a+b;}
-}
+    int operator()(int a, int b){return a+b;}
+};
 
 // Define Function type.
 function<int(int,int)> func;
@@ -268,13 +266,9 @@ cout << func(2,3) << endl; // print 6
 
 // Functor ->  Callable Object
 func = adder();
-cout << adder(1,2) << endl; // print 3
+cout << func(1,2) << endl; // print 3
 
 // Lambda sign to a Function type
-func = [=](int a,int b){return a+b};
+func = [=](int a,int b){return a+b;};
 func(3,4);
 ```
-
-
-
-
