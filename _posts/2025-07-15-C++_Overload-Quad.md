@@ -3,7 +3,7 @@ layout: post
 title: "C++ Overload Review"
 date: 2025-07-15 23:55:00 -0400
 categories: [Class note review]
-tags: [Class, Review]
+tags: [Class, Review, c++]
 ---
 # **Quad(Matrix) overload operator and Member Function**
 ```cpp
