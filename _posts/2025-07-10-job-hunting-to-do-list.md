@@ -2,7 +2,7 @@
 layout: post
 title: "Hunting Job Notes"
 date: 2025-07-10 12:00:00 -0400
-categories: [notes]
+categories: [Application notes]
 tags: [job, template]
 ---
 
