@@ -84,6 +84,27 @@ for i = 2 to n do
 
 ### **Proof by (exchange argument or Induction)**
 
-#### **Argument**
+#### **Argument Exchange**
+---
+- **The goal is to prove the greedy method wont lose the optimallicty. 
+
+- Assume we have an **hypothetical optimal schedule $e'_1,e'_2 ... e'_k:$ with k activity which is the most optimal one**
+
+- assume $e_1 \neq e'_1$, then **Since $e_1$ is the earliest termination.** so when we replace  $e_1$ with  $e'_1$,  $e'_2$ wont overlap with $e_1$. 
+- **Therefore**, we can follow this logic and successfuly switch $e'_1 ... e'_k$ to $e_1 ... e_k$ without changing the **activity number k**. So we proof even we have a *optimal schedule*, we can replace to **greedy method**, without lose optimalicity.
+
+#### **Induction**
+---
+- **base case:** n = 1, k = 1 is the optimal select
+---
+- **inductive hypothesis**
+- 
+
+
+---
+
+## **Scheduling problems**
+
+
 
 
