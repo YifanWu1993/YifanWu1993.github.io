@@ -105,6 +105,96 @@ for i = 2 to n do
 
 ## **Scheduling problems**
 
+---
+
+
+
+
+## **01 Knapsack Problem**
+
+### **Problem Definition**
+- **Container with Weight Capacity:** W ∧ Set of n items: i₁, i₂, ..., iₙ, each with:
+  - **Value:** Vᵢ
+  - **Weight:** Wᵢ
+- **Goal:** Find Subset of items where `Total W ≤ Cw` ∧ `Max(V)`
+- **Solve method:** Dynamic Programming (*this one cannot solve by greedy method*)
+- **Note:** DP is for solving **Optimization Problems**. Also said can solve problems in **Sequence of decisions**
+
+---
+
+### **Example Problem**
+- **Given:**
+  - m ≤ 8, n = 4
+  - P = {1, 2, 5, 6} (Prices/Values)
+  - W = {2, 3, 4, 5} (Weights)
+- **Find:** Max(Σ Pᵢ·Xᵢ) ∧ Σ wᵢ ≤ M, where Xᵢ ∈ {0, 1}
+
+---
+
+### **Dynamic Programming Algorithm**
+
+### **DP-01-Knapsack Algorithm**
+
+```
+DP-01-Knapsack(W[1...n], P[1...n], W) // W[1...n] = weight for each element
+D[0...n, 0...W] = 0  // Create Matrix     // P[1...n] = Price for every element
+// W is the capacity
+For i = 0 → n do ⇒ D[i, 0] = 0  // Set up 1st Column
+For j = 0 → (W-1) do ⇒ D[0, j] = 0  // Set up 1st Row
+For i = 1 ... n do  // i ≥ 2
+  For j = 1 ... (W) do  // j ≥ 2
+  D[i,j] = D[i-1, j]  // P[i] not in
+    if w[i] ≤ j:
+    D[i,j] = Max(D[i-1, j], D[i-1, j - w[i]] + P[i])
+Return D[n, W]
+```
+---
+
+---
+
+### **DP Table Visualization**
+
+### **Table Structure**
+- **Rows (i):** Items (0 to n)
+- **Columns (j):** Weight capacity (0 to W)
+- **W → Column number**
+
+| i \ W | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|-------|---|---|---|---|---|---|---|---|---|
+| 0     | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| P₁ W₁ | 0 |   | 2 | 0 |   |   |   |   |   |
+| 1 (2) | 0 |   | 0 |   |   |   |   |   |   |
+| 2 (3) | 0 |   | 0 |   |   |   |   |   |   |
+| 5 (4) | 0 |   | 0 |   |   |   |   |   |   |
+| 6 (5) | 0 |   | 0 |   |   |   |   |   |   |
+
+*i → Row number*
+
+---
+
+## **Decision Making**
+
+### **Sequence of Decisions**
+- **Making:** X₁, X₂, X₃, X₄
+
+
+**Interpretation:** 
+- Decision variables Xᵢ ∈ {0, 1} indicate whether to include item i
+- The optimal solution involves selecting specific items based on the DP table
+
+---
+
+## **Key Concepts**
+1. **Cannot solve by Greedy Method** - Requires Dynamic Programming
+2. **Optimal Substructure** - Solution to larger problem depends on solutions to subproblems
+3. **Memoization** - Store results in DP table to avoid recalculation
+4. **Time Complexity:** O(n·W) - Pseudopolynomial time
+5. **Space Complexity:** O(n·W) - For the DP table
+
+---
+
+
+
 
 
 
