@@ -171,6 +171,107 @@ Sch(T, P, f):
 - **Overall:** $O(n \log n)$
 
 ---
+## **Faster Greedy Scheduling Problems using Heap and Priority Queue**
+---
+
+### **Faster Greedy Algorithm**
+```
+Faster-Greedy(S, f, n)
+// Sorted by S_i
+H = [] // PQ, Room = 0
+For i = 1 ... n do
+    If H is not empty:
+        (E, f_i) = H.peek() // get the min element
+        If S_i >= f_e do => H.remove min; H.insert f_i;
+        Else: H.insert f_i; R += 1
+    Else: H = H.append[i]
+```
+
+### **Analysis using Divide and Conquer**
+---
+- **Recurrence:** $T(n) = T(n/2) + O(n)$
+- **Using Master Theorem:** $T(n) = 4T(n/2) + n$
+- **Solution:** $T(n) = O(n^2)$ 
+- **With Heap optimization:** $T(n) = T(n/2) + n \log n$
+- **Final complexity:** $O(n \log^2 n)$
+
+---
+
+## **Set Scheduling Problem**
+---
+
+### **Problem Definition**
+- **Given:** Set of tasks $S = \{a_1, ..., a_n\}$
+- **Schedule Question:** $P_i$ time unit of $a_i$, $C_i$ finish time of $a_i$
+- **Example:** $a_1, a_2$ task, $P_1 = 3, P_2 = 6$. Run $a_1$ before $a_2$
+
+### **Greedy Strategy**
+- **Sort $P_i$ in increasing order**
+- **Algorithm:**
+```
+Schedule-f(P, n)
+T(n) = aT(n/b) + f(n)
+```
+
+### **Master Theorem Analysis**
+- **Form:** $T(n) = 2T(n/3) + n^2 \lg n$, $a=2, b=3$
+- **Case analysis:** $n^{\log_3 2} = n^{0.63}$
+- **Since** $n^2 \lg n > n^{0.63}$
+- **Result:** $T(n) = O(n^2 \lg n)$
+
+---
+
+# **Amortized Analysis**
+---
+
+## **Binary Counter Analysis**
+---
+
+### **Aggregate Method - Binary Counter**
+- **Operation:** INCREMENT on k-bit binary counter
+- **Cost analysis:** Last bit flips every operation, bit 1 flips every 2 operations, etc.
+- **Total flips in n operations:** $\sum_{i=0}^{k-1} \lfloor n/2^i \rfloor < n \sum_{i=0}^{\infty} 1/2^i = 2n$
+- **Amortized cost:** $O(1)$ per operation
+
+### **Accounting Method**
+- **Charge:** 2 credits per INCREMENT
+- **Credit allocation:**
+  - 1 credit: pay for actual flip from 0 to 1
+  - 1 credit: store on the bit for future flip from 1 to 0
+- **Invariant:** Every bit with value 1 has 1 stored credit
+- **Result:** $O(1)$ amortized cost per operation
+
+---
+
+# **Dynamic Programming**
+
+## **DP vs Greedy - Key Differences**
+---
+- **Both** Dynamic Programming and Greedy method are for **optimization problems (Max or min)**
+- **DP** will use **recurrence formulas** and follow the **(principle of optimality)** → Problem can be solved by taking **sequence of decisions**
+
+---
+
+## **01 Knapsack Problem**
+
+### **Problem Definition**
+- **Container with Weight Capacity:** W ∧ Set of n items: $i_1, i_2, ..., i_n$, each with:
+  - **Value:** $V_i$
+  - **Weight:** $W_i$
+- **Goal:** Find Subset of items where `Total W ≤ Cw` ∧ `Max(V)`
+- **Solve method:** Dynamic Programming (*this one cannot solve by greedy method*)
+- **Note:** DP is for solving **Optimization Problems**. Also said can solve problems in **Sequence of decisions**
+
+---
+
+### **Example Problem**
+- **Given:**
+  - m ≤ 8, n = 4
+  - P = {1, 2, 5, 6} (Prices/Values)
+  - W = {2, 3, 4, 5} (Weights)
+- **Find:** Max($\sum P_i \cdot X_i$) ∧ $\sum w_i \leq M$, where $X_i \in \{0, 1\}$
+
+---
 
 # **Dynamic Programming**
 
