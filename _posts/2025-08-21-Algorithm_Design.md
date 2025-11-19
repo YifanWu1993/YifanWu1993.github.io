@@ -16,7 +16,7 @@ tags: [Class, Review, Algorithm Design]
 ---
 ## **Activity Selection problem**
 - **Definition:** Find the max number of the activity can happen without the overlap in the hall
-![Activity Chart](Activity_selection.png "Activity Selection Example")
+![Activity Chart](/assets/Activity_selection.png "Activity Selection Example")
 
 ---
 ### **Normal Approach**
@@ -79,7 +79,7 @@ for i = 2 to n do
 ---
 
 - **Here is the result**
-![Activity Chart](result.png "Activity Selection Example")
+![Activity Chart](/assets/result.png "Activity Selection Example")
 
 
 ### **Proof by (exchange argument or Induction)**
